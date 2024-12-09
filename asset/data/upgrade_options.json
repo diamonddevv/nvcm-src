@@ -1,0 +1,95 @@
+{
+	"options": [
+		{
+			"text": "Reduce spread\nby %s percent",
+			"min": 2,
+			"max": 8,
+			"cost": 65,
+			"func": "upgrade_spread"
+		},
+		{
+			"text": "Increase spread\nby %s percent",
+			"min": 2,
+			"max": 8,
+			"cost": 65,
+			"func": "upgrade_spread_up"
+		},
+		{
+			"text": "Increase damage\nby %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 75,
+			"func": "upgrade_dmg_percent"
+		},
+		{
+			"text": "Increase max health\nby %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 75,
+			"func": "upgrade_max_health_percent"
+		},
+		{
+			"text": "Increase speed\nby %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 35,
+			"func": "upgrade_speed_percent"
+		},
+		{
+			"text": "+%s bullets shot",
+			"min": 1,
+			"max": 2,
+			"cost": 150,
+			"func": "upgrade_barrel"
+		},
+		{
+			"text": "Increase fire rate\nby %s percent",
+			"min": 10,
+			"max": 15,
+			"cost": 60,
+			"func": "upgrade_fire_rate",
+		},
+		{
+			"text": "Increase regeneration\nby %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 85,
+			"func": "upgrade_regen",
+		},
+		{
+			"text": "Increase chance of\n explosion by\n%s percent",
+			"min": 1,
+			"max": 5,
+			"cost": 110,
+			"func": "upgrade_explo_freq",
+		},
+		{
+			"text": "Increase explosion\npower by %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 110,
+			"func": "upgrade_explo_power",
+		},
+		{
+			"text": "Increase combo retainment\nchance by %s percent",
+			"min": 5,
+			"max": 10,
+			"cost": 115,
+			"func": "upgrade_combo_retain_chance",
+		},
+		{
+			"text": "Increase combo timer\nlength by %s percent",
+			"min": 3,
+			"max": 12,
+			"cost": 150,
+			"func": "upgrade_combo_timer",
+		},
+		{
+			"text": "Increase damage\nreduction by %s percent",
+			"min": 1,
+			"max": 5,
+			"cost": 150,
+			"func": "upgrade_dmg_reduction",
+		}
+	]
+}

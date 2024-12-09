@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgbv6bla5t0oe"]
 
-[ext_resource type="Script" path="res://script/game/option_selector.gd" id="1_eflkk"]
+[ext_resource type="Script" path="res://script/game/interactable/option_selector.gd" id="1_eflkk"]
 [ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="1_na7xc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aa3xb"]

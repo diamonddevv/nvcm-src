@@ -6,7 +6,7 @@ class_name Player
 @onready var sfx_money: AudioStreamPlayer = $GainMoneySound
 @onready var sfx_combo_build: AudioStreamPlayer = $ComboBuildSound
 
-@export var combo_retain_chance: float = 0.05
+@export var combo_retain_chance: float = 0.2
 @export var combo_timer_length: float = 1.5
 
 var kills: int = 0

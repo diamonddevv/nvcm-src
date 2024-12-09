@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdcuiw87laf56"]
 
-[ext_resource type="Script" path="res://script/game/projectile.gd" id="1_rg1y4"]
+[ext_resource type="Script" path="res://script/game/unit/projectile.gd" id="1_rg1y4"]
 [ext_resource type="Texture2D" uid="uid://dxw5u8n74tfs6" path="res://asset/texture/sprites.png" id="1_ya4og"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ial5w"]

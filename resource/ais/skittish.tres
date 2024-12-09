@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://c01gv40osg0gu"]
 
-[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_vhs5t"]
+[ext_resource type="Script" path="res://script/resource/ai_pattern.gd" id="1_vhs5t"]
 
 [resource]
 script = ExtResource("1_vhs5t")

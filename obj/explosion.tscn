@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://donftbub880f4"]
 
-[ext_resource type="Script" path="res://script/game/explosion.gd" id="1_ocyrj"]
+[ext_resource type="Script" path="res://script/game/unit/explosion.gd" id="1_ocyrj"]
 [ext_resource type="AudioStream" uid="uid://cfja0xiat28j" path="res://asset/audio/sfx/explosion.wav" id="2_rhfsd"]
 
 [sub_resource type="Curve" id="Curve_64gxf"]

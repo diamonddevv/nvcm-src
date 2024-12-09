@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3cj827hlywc"]
+[gd_scene load_steps=9 format=3 uid="uid://d3cj827hlywc"]
 
 [ext_resource type="Texture2D" uid="uid://dluv0sar0jw0x" path="res://asset/texture/title.png" id="1_ao5fx"]
 [ext_resource type="Script" path="res://script/menu/main_menu.gd" id="1_uregd"]
@@ -6,6 +6,8 @@
 [ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="4_8w1ke"]
 [ext_resource type="AudioStream" uid="uid://cs1tkdb2b5kfd" path="res://asset/audio/sfx/money_get.wav" id="5_eaaq2"]
 [ext_resource type="FontFile" uid="uid://deydtolohaa13" path="res://resource/Pixellari.ttf" id="6_j1xs4"]
+[ext_resource type="Script" path="res://script/menu/settings_panel.gd" id="7_fe6ox"]
+[ext_resource type="Script" path="res://script/menu/customise_panel.gd" id="8_crr4a"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -66,7 +68,8 @@ theme_override_constants/margin_bottom = 10
 [node name="Label" type="Label" parent="bg/Credit"]
 layout_mode = 2
 text = "Game by DiamondDev
-Music by GaboDabo"
+Music by GaboDabo
+v0.0.0"
 label_settings = ExtResource("4_8w1ke")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -74,6 +77,39 @@ vertical_alignment = 1
 [node name="MoneySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_eaaq2")
 volume_db = -45.0
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -160.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j1xs4")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="CustomiseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -70.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j1xs4")
+theme_override_font_sizes/font_size = 32
+text = "Customise"
 
 [node name="HowToPlayPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -173,6 +209,7 @@ There are a multitude of different upgrades you can find in NOT VERY CASH MONEY.
  Jingle Jam 2024: The event this game was made for
  The Yogscast: For hosting the Jingle Jam
  The Godot Foundation: For creating Godot 4.3, the engine this game was made in
+ Zacchary Dempsey-Plante: For their Pixellari font
 [/ul]
 
 This game was made in 1 week, for Jingle Jam Game Jam 2024, with the theme 'Everything has a Cost'.
@@ -183,11 +220,126 @@ Made in Scotland with <3
 [img]res://asset/texture/ddv.png[/img]
 
 [wave]Donate to Jingle Jam![/wave]
+[i](when its running, obviously)[/i]
 
 Thank you for playing NOT VERY CASH MONEY!
 "
 
-[node name="Label" type="Label" parent="."]
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1600.0
+offset_bottom = -800.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("7_fe6ox")
+
+[node name="CenterContainer" type="CenterContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 14.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = ExtResource("4_8w1ke")
+horizontal_alignment = 1
+
+[node name="Sep1" type="Control" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolume" type="HBoxContainer" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/CenterContainer/VBoxContainer/MasterVolume"]
+layout_mode = 2
+text = "Master Volume: "
+label_settings = ExtResource("4_8w1ke")
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="SettingsPanel/CenterContainer/VBoxContainer/MasterVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MusicVolume" type="HBoxContainer" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/CenterContainer/VBoxContainer/MusicVolume"]
+layout_mode = 2
+text = "Music Volume: "
+label_settings = ExtResource("4_8w1ke")
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="SettingsPanel/CenterContainer/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+tick_count = 10
+ticks_on_borders = true
+
+[node name="Sep2" type="Control" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="SettingsPanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j1xs4")
+theme_override_font_sizes/font_size = 32
+text = "Save and Close"
+
+[node name="CustomisePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_right = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_crr4a")
+
+[node name="CenterContainer" type="CenterContainer" parent="CustomisePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -28.0
+offset_right = 14.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CustomisePanel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CustomisePanel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Customise"
+label_settings = ExtResource("4_8w1ke")
+horizontal_alignment = 1
+
+[node name="PressHForTutorial" type="Label" parent="."]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
@@ -196,3 +348,8 @@ offset_bottom = 42.0
 scale = Vector2(0.5, 0.5)
 text = "Press H for Tutorial"
 label_settings = ExtResource("4_8w1ke")
+
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CustomiseButton" to="." method="_on_customise_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/CenterContainer/VBoxContainer/SettingsButton" to="SettingsPanel" method="save"]

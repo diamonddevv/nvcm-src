@@ -26,6 +26,7 @@ static var die_particle: PackedScene = ResourceLoader.load("res://obj/particles/
 @export var dmgless_time_to_regen: float = 16
 @export var explosion_freq: float = 0.0
 @export var explosion_power: float = 0.5
+@export var base_damage_reduction: float = 0.0
 
 var health: int = 0
 

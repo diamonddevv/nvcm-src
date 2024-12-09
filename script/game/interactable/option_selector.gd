@@ -10,93 +10,7 @@ var timer_ended: bool = false
 var function: Callable = func(): pass
 
 static var caller := OptionSelector.new()
-static var upgrade_options := [
-	{
-		"text": "Reduce spread\nby %s percent",
-		"min": 2,
-		"max": 8,
-		"cost": 65,
-		"func": "upgrade_spread"
-	},
-	{
-		"text": "Increase spread\nby %s percent",
-		"min": 2,
-		"max": 8,
-		"cost": 65,
-		"func": "upgrade_spread_up"
-	},
-	{
-		"text": "Increase damage\nby %s percent",
-		"min": 5,
-		"max": 10,
-		"cost": 75,
-		"func": "upgrade_dmg_percent"
-	},
-	{
-		"text": "Increase max health\nby %s percent",
-		"min": 5,
-		"max": 10,
-		"cost": 75,
-		"func": "upgrade_max_health_percent"
-	},
-	{
-		"text": "Increase speed\nby %s percent",
-		"min": 5,
-		"max": 10,
-		"cost": 35,
-		"func": "upgrade_speed_percent"
-	},
-	{
-		"text": "+1 bullets shot",
-		"min": 1,
-		"max": 1,
-		"cost": 150,
-		"func": "upgrade_barrel",
-		"concat_value": false
-	},
-	{
-		"text": "Increase fire rate\nby %s percent",
-		"min": 10,
-		"max": 15,
-		"cost": 60,
-		"func": "upgrade_fire_rate",
-	},
-	{
-		"text": "Increase regeneration\nby %s percent",
-		"min": 5,
-		"max": 10,
-		"cost": 85,
-		"func": "upgrade_regen",
-	},
-	{
-		"text": "Increase chance of\n explosion by\n%s percent",
-		"min": 1,
-		"max": 3,
-		"cost": 110,
-		"func": "upgrade_explo_freq",
-	},
-	{
-		"text": "Increase explosion\npower by %s percent",
-		"min": 1,
-		"max": 3,
-		"cost": 110,
-		"func": "upgrade_explo_power",
-	},
-	{
-		"text": "Increase chance to retain\ncombo after being\ndamaged by %s percent",
-		"min": 1,
-		"max": 3,
-		"cost": 115,
-		"func": "upgrade_combo_retain_chance",
-	},
-	{
-		"text": "Increase combo timer\nlength by %s percent",
-		"min": 1,
-		"max": 5,
-		"cost": 150,
-		"func": "upgrade_combo_timer",
-	}
-]
+static var upgrade_options: Array = []
 
 func _ready() -> void:
 	timer_ended = false
@@ -134,8 +48,9 @@ func set_option(text: String, text_time: float, callable: Callable):
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player and timer_ended:
 		selected.emit()
-		
-# upgrades
+
+
+# upgrades functions
 func upgrade_spread(player: Player, value: float):
 	player.spread *= (1 - (value / 100))
 	
@@ -152,7 +67,7 @@ func upgrade_speed_percent(player: Player, value: float):
 	player.speed *= (1 + (value / 100))
 	
 func upgrade_barrel(player: Player, value: float):
-	player.barrels += 1
+	player.barrels += roundi(value)
 
 func upgrade_fire_rate(player: Player, value: float):
 	player.fire_delay *= (1 - (value / 100))
@@ -171,6 +86,9 @@ func upgrade_explo_power(player: Player, value: float):
 	
 func upgrade_explo_freq(player: Player, value: float):
 	player.explosion_freq += min(0.8, value / 100)
+	
+func upgrade_dmg_reduction(player: Player, value: float):
+	player.base_damage_reduction *= (1 + (value / 100))
 	
 func heal(player: Player, value: float):
 	player.health += value

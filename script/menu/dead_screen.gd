@@ -1,4 +1,4 @@
-extends Control
+extends Menu
 class_name DeadScreen
 
 static var main_menu: PackedScene = ResourceLoader.load("res://scene/main_menu.tscn")
@@ -7,11 +7,10 @@ static var main_menu: PackedScene = ResourceLoader.load("res://scene/main_menu.t
 @onready var instruction: Sprite2D = $bg/CenterContainer/instruction/Sprite2D
 @onready var score_label: Label = $bg/score_container/score
 
-var age: float = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	age += delta
+	super._process(delta)
 	
 	dead.rotation_degrees = 2 * sin(age)
 	dead.position = Vector2(cos(age), -30 + sin(age))
