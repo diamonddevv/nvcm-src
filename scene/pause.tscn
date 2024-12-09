@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqkr0b60xub7y"]
+
+[ext_resource type="Script" path="res://script/hud/pause.gd" id="1_2adfp"]
+[ext_resource type="Shader" path="res://asset/shader/desaturate.gdshader" id="2_4gtpe"]
+[ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="2_w4nan"]
+[ext_resource type="FontFile" uid="uid://deydtolohaa13" path="res://resource/Pixellari.ttf" id="4_egegp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gtvt5"]
+shader = ExtResource("2_4gtpe")
+shader_parameter/saturation = 0.3
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_2adfp")
+
+[node name="Desaturation" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gtvt5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 243.0
+offset_right = 306.0
+offset_bottom = 275.0
+scale = Vector2(4, 4)
+text = "Paused"
+label_settings = ExtResource("2_w4nan")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 28.0
+offset_right = 403.0
+offset_bottom = 60.0
+scale = Vector2(0.25, 0.25)
+text = "Press Escape to resume"
+label_settings = ExtResource("2_w4nan")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 120.0
+offset_right = 59.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="GiveUp" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_egegp")
+theme_override_font_sizes/font_size = 32
+text = "Give Up"
+
+[connection signal="pressed" from="GridContainer/GiveUp" to="." method="_on_give_up_pressed"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdqpmoxiqpkch"]
+
+[ext_resource type="FontFile" uid="uid://deydtolohaa13" path="res://resource/Pixellari.ttf" id="1_ak2u8"]
+[ext_resource type="PackedScene" uid="uid://d4g38ajotug4p" path="res://obj/hud/money_label.tscn" id="2_20tig"]
+[ext_resource type="Script" path="res://script/hud/shop_button.gd" id="2_lj4do"]
+[ext_resource type="AudioStream" uid="uid://14kjc5cuf2mu" path="res://asset/audio/sfx/menu_select.wav" id="4_l0cav"]
+
+[node name="ShopButton" type="Button"]
+custom_minimum_size = Vector2(200, 0)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_ak2u8")
+theme_override_font_sizes/font_size = 24
+text = "option"
+script = ExtResource("2_lj4do")
+
+[node name="MoneyLabel" parent="." instance=ExtResource("2_20tig")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l0cav")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

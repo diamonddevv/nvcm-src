@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://cy7cjhqfchtwo"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_4brgu"]
+
+[resource]
+script = ExtResource("1_4brgu")
+is_boss = false
+enemy_name = "a powerhouse of an enemy"
+speed = 450
+max_health = 45.0
+aggression = 0.8
+fire_rate = 1.0
+damage = 18.0
+shots = 5
+spread = 12.0
+reload_time = 6.5
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 4

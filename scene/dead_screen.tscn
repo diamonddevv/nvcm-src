@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2dk2c4jmglf6"]
+
+[ext_resource type="Script" path="res://script/menu/dead_screen.gd" id="1_e5muj"]
+[ext_resource type="Texture2D" uid="uid://bdklg8dbaaqg8" path="res://asset/texture/dead.png" id="2_8xal6"]
+[ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="3_iwkos"]
+[ext_resource type="Texture2D" uid="uid://cjciilpynte11" path="res://asset/texture/instruction.png" id="3_ox6w6"]
+
+[node name="DeadScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e5muj")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.0823529, 0.32549, 1)
+
+[node name="score_container" type="CenterContainer" parent="bg"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 444.0
+offset_right = 800.0
+offset_bottom = 800.0
+
+[node name="score" type="Label" parent="bg/score_container"]
+layout_mode = 2
+text = "died of: ligma
+
+taxed: many"
+label_settings = ExtResource("3_iwkos")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="bg"]
+layout_mode = 1
+offset_right = 160.0
+offset_bottom = 160.0
+scale = Vector2(5, 5)
+
+[node name="dead" type="Control" parent="bg/CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/CenterContainer/dead"]
+position = Vector2(0, -30)
+texture = ExtResource("2_8xal6")
+
+[node name="instruction" type="Control" parent="bg/CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/CenterContainer/instruction"]
+texture = ExtResource("3_ox6w6")

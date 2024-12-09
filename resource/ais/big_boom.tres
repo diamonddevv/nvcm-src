@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://clyvacj8abuuc"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_0q8xs"]
+
+[resource]
+script = ExtResource("1_0q8xs")
+is_boss = true
+enemy_name = "Big Boom"
+speed = 1000
+max_health = 600.0
+aggression = 0.4
+fire_rate = 0.5
+damage = 12.0
+shots = 24
+spread = 8.0
+reload_time = 5.0
+explo_power = 3.5
+explo_freq = 0.9
+sprite_idx = 6

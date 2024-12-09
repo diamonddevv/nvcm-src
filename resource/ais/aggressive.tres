@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://8v3p3udocbfg"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_5jmb3"]
+
+[resource]
+script = ExtResource("1_5jmb3")
+is_boss = false
+enemy_name = "a very aggressive enemy"
+speed = 750
+max_health = 75.0
+aggression = 1.0
+fire_rate = 0.6
+damage = 2.0
+shots = 20
+spread = 45.0
+reload_time = 10.0
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 0

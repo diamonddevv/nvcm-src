@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://nnaoj006jemt"]
+
+[ext_resource type="Script" path="res://script/game/enemy.gd" id="1_4qc4x"]
+[ext_resource type="Texture2D" uid="uid://dxw5u8n74tfs6" path="res://asset/texture/sprites.png" id="2_hc2jf"]
+[ext_resource type="AudioStream" uid="uid://darxlfuj6a8u8" path="res://asset/audio/sfx/fire.wav" id="3_eyxd4"]
+[ext_resource type="AudioStream" uid="uid://cptcaxvwx324r" path="res://asset/audio/sfx/hurt.wav" id="3_rpf1b"]
+[ext_resource type="AudioStream" uid="uid://b6gdt5m87u15y" path="res://asset/audio/sfx/die.wav" id="5_0cufs"]
+[ext_resource type="AudioStream" uid="uid://dl6471gu7xowd" path="res://asset/audio/sfx/spawn_minion.wav" id="6_ytatb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g552o"]
+atlas = ExtResource("2_hc2jf")
+region = Rect2(9, 27, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgwl7"]
+size = Vector2(8, 8)
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(16, 16)
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_4qc4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_g552o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cgwl7")
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eyxd4")
+volume_db = 18.0
+pitch_scale = 0.01
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rpf1b")
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_0cufs")
+
+[node name="SpawnMinionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ytatb")
+
+[node name="ShotTime" type="Timer" parent="."]
+
+[node name="InvicibilityTime" type="Timer" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="MinionTimer" type="Timer" parent="."]
+wait_time = 12.0
+
+[node name="AiTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="MinionTimer" to="." method="_on_minion_timer_timeout"]
+[connection signal="timeout" from="AiTimer" to="." method="_on_ai_timer_timeout"]

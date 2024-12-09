@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgdh6aj506i7u"]
+
+[ext_resource type="PackedScene" uid="uid://2hj03c8hjh54" path="res://obj/map.tscn" id="1_a5gs8"]
+[ext_resource type="Script" path="res://script/game/game_manager.gd" id="1_e5ycn"]
+[ext_resource type="PackedScene" uid="uid://dqkr0b60xub7y" path="res://scene/pause.tscn" id="2_45mqd"]
+[ext_resource type="PackedScene" uid="uid://c8bjrokhd16yv" path="res://obj/hud/hud.tscn" id="2_d8vhp"]
+[ext_resource type="PackedScene" uid="uid://6d2c63ba7ut3" path="res://obj/player.tscn" id="3_i8key"]
+[ext_resource type="PackedScene" uid="uid://ocgkcl7nl4o2" path="res://obj/crosshair.tscn" id="4_awx5f"]
+
+[node name="main" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_e5ycn")
+
+[node name="HUD" parent="." instance=ExtResource("2_d8vhp")]
+
+[node name="Pause" parent="." instance=ExtResource("2_45mqd")]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
+
+[node name="Map" parent="." instance=ExtResource("1_a5gs8")]
+
+[node name="Player" parent="." instance=ExtResource("3_i8key")]
+z_index = 5
+
+[node name="Crosshair" parent="." instance=ExtResource("4_awx5f")]

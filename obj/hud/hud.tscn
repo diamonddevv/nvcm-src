@@ -1,0 +1,225 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8bjrokhd16yv"]
+
+[ext_resource type="Script" path="res://script/hud/hud.gd" id="1_7nnfi"]
+[ext_resource type="PackedScene" uid="uid://d4g38ajotug4p" path="res://obj/hud/money_label.tscn" id="1_afpp6"]
+[ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="2_n5b0k"]
+[ext_resource type="PackedScene" uid="uid://cdqpmoxiqpkch" path="res://obj/hud/shop_button.tscn" id="4_k0b65"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_34b13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvk6h"]
+bg_color = Color(0.898039, 0.521569, 0.521569, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.909804, 0.294118, 0.294118, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai1s2"]
+bg_color = Color(0.392157, 0.592157, 0.694118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.356863, 0.588235, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmni4"]
+bg_color = Color(0.533333, 0.752941, 0.439216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.203922, 0.407843, 0.337255, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 4
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjlqr"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.86, 0.833627, 0.4644, 0.498039)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.956863, 0.411765, 1)
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 8
+shadow_offset = Vector2(0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_7nnfi")
+
+[node name="BossHealthBar" type="ProgressBar" parent="."]
+visible = false
+custom_minimum_size = Vector2(0, 20)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_34b13")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gvk6h")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="BossHealthBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = -35.0
+offset_right = 96.0
+offset_bottom = -3.0
+grow_horizontal = 2
+text = "Bossman innit"
+label_settings = ExtResource("2_n5b0k")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Timer" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -32.0
+offset_right = 800.0
+offset_bottom = 23.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+text = "00:00"
+label_settings = ExtResource("2_n5b0k")
+horizontal_alignment = 1
+
+[node name="Combo" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 48.0
+offset_right = 785.0
+offset_bottom = 80.0
+text = "0x Combo!"
+label_settings = ExtResource("2_n5b0k")
+horizontal_alignment = 2
+
+[node name="Bar" type="ProgressBar" parent="Panel/Combo"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 0
+offset_left = 636.0
+offset_top = -14.0
+offset_right = 779.0
+offset_bottom = -5.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_34b13")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ai1s2")
+max_value = 5.0
+value = 5.0
+show_percentage = false
+
+[node name="Kills" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 49.0
+offset_right = 785.0
+offset_bottom = 81.0
+text = "0 Kills"
+label_settings = ExtResource("2_n5b0k")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HealthBar" type="ProgressBar" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_34b13")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nmni4")
+value = 100.0
+show_percentage = false
+
+[node name="MoneyLabel" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_afpp6")]
+layout_mode = 2
+
+[node name="ShopPanel" type="Panel" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kjlqr")
+
+[node name="Label" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_top = 14.0
+offset_right = 36.0
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "Shop"
+label_settings = ExtResource("2_n5b0k")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -28.0
+offset_bottom = 31.16
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="ShopButton" parent="ShopPanel/HBoxContainer" instance=ExtResource("4_k0b65")]
+layout_mode = 2
+text = "longer text lol"
+
+[node name="ShopButton2" parent="ShopPanel/HBoxContainer" instance=ExtResource("4_k0b65")]
+layout_mode = 2
+text = "short text"
+
+[node name="ShopButton3" parent="ShopPanel/HBoxContainer" instance=ExtResource("4_k0b65")]
+layout_mode = 2
+text = "keep it under this
+character count"

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://donftbub880f4"]
+
+[ext_resource type="Script" path="res://script/game/explosion.gd" id="1_ocyrj"]
+[ext_resource type="AudioStream" uid="uid://cfja0xiat28j" path="res://asset/audio/sfx/explosion.wav" id="2_rhfsd"]
+
+[sub_resource type="Curve" id="Curve_64gxf"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0.107991, -107.368), 0.0, 0.0, 0, 0, Vector2(0.574514, 40), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_4iwyf"]
+max_value = 100.0
+_data = [Vector2(0.574514, 12.1053), 0.0, 0.0, 0, 0, Vector2(0.853132, 32.6316), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_tk1ds"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1pxjw"]
+offsets = PackedFloat32Array(0, 0.167816, 0.328736, 0.806897)
+colors = PackedColorArray(0.84, 0.15008, 0.1008, 1, 0.927462, 0.426286, 0.200368, 1, 1, 0.888333, 0.33, 1, 1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eh6kx"]
+radius = 200.0
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_ocyrj")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 256
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+angular_velocity_min = -100.0
+angular_velocity_max = 100.0
+linear_accel_min = -80.0
+linear_accel_max = -5.0
+linear_accel_curve = SubResource("Curve_64gxf")
+damping_min = 10.0
+damping_max = 80.0
+damping_curve = SubResource("Curve_4iwyf")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 4.0
+scale_amount_max = 30.0
+scale_amount_curve = SubResource("Curve_tk1ds")
+color_ramp = SubResource("Gradient_1pxjw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eh6kx")
+
+[node name="SfxExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rhfsd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

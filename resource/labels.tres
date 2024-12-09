@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://6y6x0ama3x0y"]
+
+[ext_resource type="FontFile" uid="uid://deydtolohaa13" path="res://resource/Pixellari.ttf" id="1_tk7cr"]
+
+[resource]
+font = ExtResource("1_tk7cr")
+font_size = 32
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)

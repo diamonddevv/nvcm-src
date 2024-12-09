@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://6d2c63ba7ut3"]
+
+[ext_resource type="Script" path="res://script/game/player.gd" id="1_j0ten"]
+[ext_resource type="Texture2D" uid="uid://dxw5u8n74tfs6" path="res://asset/texture/sprites.png" id="2_5qb2p"]
+[ext_resource type="AudioStream" uid="uid://darxlfuj6a8u8" path="res://asset/audio/sfx/fire.wav" id="3_jfck0"]
+[ext_resource type="AudioStream" uid="uid://cptcaxvwx324r" path="res://asset/audio/sfx/hurt.wav" id="4_yh3k8"]
+[ext_resource type="AudioStream" uid="uid://b6gdt5m87u15y" path="res://asset/audio/sfx/die.wav" id="5_tqg4n"]
+[ext_resource type="AudioStream" uid="uid://4ji7tx8xv1yv" path="res://asset/audio/sfx/lost_combo.wav" id="6_stg40"]
+[ext_resource type="AudioStream" uid="uid://c2tuim16v601v" path="res://asset/audio/sfx/combo_build.wav" id="7_5lhme"]
+[ext_resource type="AudioStream" uid="uid://cs1tkdb2b5kfd" path="res://asset/audio/sfx/money_get.wav" id="8_fskx5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yngla"]
+atlas = ExtResource("2_5qb2p")
+region = Rect2(27, 9, 8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgwl7"]
+size = Vector2(8, 8)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(16, 16)
+collision_mask = 28
+script = ExtResource("1_j0ten")
+max_health = 120.0
+prj_damage = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_yngla")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cgwl7")
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jfck0")
+volume_db = 4.0
+pitch_scale = 0.01
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yh3k8")
+
+[node name="DieSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tqg4n")
+volume_db = 24.0
+
+[node name="LostComboSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_stg40")
+
+[node name="ComboBuildSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5lhme")
+
+[node name="GainMoneySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_fskx5")
+
+[node name="ShotTime" type="Timer" parent="."]
+
+[node name="InvicibilityTime" type="Timer" parent="."]
+
+[node name="ComboTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="WalkTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="HealTimer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[connection signal="timeout" from="ComboTimer" to="." method="_on_combo_end"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

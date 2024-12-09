@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://vx3cmhj3mguk"]
+
+[sub_resource type="Gradient" id="Gradient_k2e3a"]
+offsets = PackedFloat32Array(0, 0.378049)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="DieParticle" type="CPUParticles2D"]
+scale = Vector2(16, 16)
+emitting = false
+amount = 64
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.3
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+linear_accel_min = -500.0
+linear_accel_max = -200.0
+radial_accel_min = -10.0
+radial_accel_max = 10.0
+damping_min = 10.0
+damping_max = 10.0
+angle_min = -10.0
+angle_max = 10.0
+scale_amount_min = 10.0
+scale_amount_max = 22.0
+color_ramp = SubResource("Gradient_k2e3a")

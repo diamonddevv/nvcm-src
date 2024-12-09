@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://c01gv40osg0gu"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_vhs5t"]
+
+[resource]
+script = ExtResource("1_vhs5t")
+is_boss = false
+enemy_name = "a really skittish enemy"
+speed = 1200
+max_health = 40.0
+aggression = 0.3
+fire_rate = 0.2
+damage = 1.0
+shots = 20
+spread = 35.0
+reload_time = 0.75
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 3

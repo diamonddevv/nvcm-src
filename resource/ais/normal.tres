@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://dpmg5sxfujm1p"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_10ivw"]
+
+[resource]
+script = ExtResource("1_10ivw")
+is_boss = false
+enemy_name = "a pretty average enemy"
+speed = 1000
+max_health = 100.0
+aggression = 0.5
+fire_rate = 0.5
+damage = 5.0
+shots = 10
+spread = 25.0
+reload_time = 1.0
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 1

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://bgfiykrp3ka1r"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_sddwm"]
+
+[resource]
+script = ExtResource("1_sddwm")
+is_boss = true
+enemy_name = "King Grayscale"
+speed = 500
+max_health = 800.0
+aggression = 0.8
+fire_rate = 0.1
+damage = 2.0
+shots = 25
+spread = 25.0
+reload_time = 5.0
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 5

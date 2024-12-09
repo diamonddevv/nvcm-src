@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AiPattern" load_steps=2 format=3 uid="uid://bp4g1du58qow5"]
+
+[ext_resource type="Script" path="res://script/game/resource/ai_pattern.gd" id="1_s5phv"]
+
+[resource]
+script = ExtResource("1_s5phv")
+is_boss = false
+enemy_name = "an annoying spraying-and-praying enemy "
+speed = 760
+max_health = 80.0
+aggression = 0.21
+fire_rate = 0.05
+damage = 0.2
+shots = 25
+spread = 75.0
+reload_time = 2.0
+explo_power = 0.0
+explo_freq = 0.0
+sprite_idx = 2
