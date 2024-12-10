@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://script/menu/customise_panel.gd" id="1_xavlk"]
 [ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="2_8owt4"]
+[ext_resource type="FontFile" uid="uid://dga8klli6eiei" path="res://resource/CourierPrime-Regular.ttf" id="3_00u4k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_des3a"]
-bg_color = Color(0, 0.784314, 0, 0.784314)
+bg_color = Color(0, 0.78, 0, 0.862745)
 border_width_left = 25
 border_width_top = 25
 border_width_right = 25
@@ -13,10 +14,6 @@ border_color = Color(0.0588235, 0.705882, 0, 0.588235)
 border_blend = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4epi"]
-
-[sub_resource type="SystemFont" id="SystemFont_hcbjn"]
-font_names = PackedStringArray("Consolas")
-subpixel_positioning = 0
 
 [node name="CustomisePanel" type="Panel"]
 anchors_preset = 15
@@ -82,6 +79,7 @@ horizontal_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/Seed"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_00u4k")
 placeholder_text = "Enter Seed"
 expand_to_text_length = true
 
@@ -89,7 +87,7 @@ expand_to_text_length = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 1
-theme_override_fonts/font = SubResource("SystemFont_hcbjn")
+theme_override_fonts/font = ExtResource("3_00u4k")
 theme_override_font_sizes/font_size = 32
 text = "Close"
 flat = true

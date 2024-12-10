@@ -14,8 +14,6 @@ signal wave_start()
 @onready var pause_ol: PauseOverlay = $Pause
 @onready var camera: Camera2D = $Camera2D
 
-var rng: RandomNumberGenerator
-
 var current_wave: Array[Enemy] = []
 var next_wave_size: int = 1
 var next_wave_boss: bool = false
@@ -34,11 +32,9 @@ var boss_health: float = 0.0
 func _ready():
 	
 	# set up randomness
-	rng = RandomNumberGenerator.new()
-	if GlobalManager.has_set_seed:
-		rng.seed = GlobalManager.set_seed.hash()
-	else:
-		rng.randomize()
+	if not GlobalManager.has_set_seed:
+		GlobalManager.set_seed = str(hash(Time.get_unix_time_from_system()))
+	seed(GlobalManager.set_seed.hash())
 	
 	GlobalManager.game_manager = self
 	hud.player = player

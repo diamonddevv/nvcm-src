@@ -6,6 +6,7 @@ const SAVE_LOCATION: String = "user://save_data.tres"
 @export_category("Settings")
 @export var master_volume: float = 1.0
 @export var music_volume: float = 1.0
+@export var menu_particles: bool = true
 
 @export_category("High Scores")
 @export var highest_floor_reached: int = -1

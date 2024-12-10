@@ -27,11 +27,17 @@ func _ready():
 	Music by GaboDabo
 	v%s
 	""" % ProjectSettings.get_setting("application/config/version")
+	
+	settings_panel.position = Vector2(0, -settings_panel.size.y)
+	customise_panel.position = Vector2(customise_panel.size.x, 0)
+	
+	settings_panel.show()
+	customise_panel.show()
 
 func _process(delta: float):
 	super._process(delta)
 	
-	if get_global_mouse_position().distance_squared_to(_last_mpos) >= 50 * 50:
+	if GlobalManager.save_data.menu_particles and get_global_mouse_position().distance_squared_to(_last_mpos) >= 50 * 50:
 		var p: CPUParticles2D = Hud.money_particle.instantiate()
 		p.finished.connect(func(): p.queue_free())
 		p.global_position = get_global_mouse_position()
