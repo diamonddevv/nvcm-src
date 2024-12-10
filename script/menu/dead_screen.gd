@@ -27,6 +27,8 @@ func _process(delta):
 	Money Left: %s
 	Money Spent: %s
 	
+	Seed: %s
+	
 	""" % [
 		str(GlobalManager.end_of_game_data["death_msg"]),
 		
@@ -34,7 +36,9 @@ func _process(delta):
 		str(GlobalManager.end_of_game_data["waves_cleared"]),
 		str(GlobalManager.end_of_game_data["enemies_killed"]), 
 		str(GlobalManager.end_of_game_data["money"]), 
-		str(GlobalManager.end_of_game_data["spent"]) 
+		str(GlobalManager.end_of_game_data["spent"]),
+		
+		str(GlobalManager.end_of_game_data["seed"])
 		]
 	
 	if Input.is_action_just_pressed("space_action"):

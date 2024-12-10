@@ -1,6 +1,8 @@
 extends Panel
 class_name SettingsPanel
 
+signal close()
+
 @onready var master_volume_slider: HSlider = $CenterContainer/VBoxContainer/MasterVolume/Slider
 @onready var music_volume_slider: HSlider = $CenterContainer/VBoxContainer/MusicVolume/Slider
 
@@ -13,3 +15,5 @@ func save():
 	GlobalManager.save_data.music_volume = music_volume_slider.value / music_volume_slider.max_value
 	
 	GlobalManager.apply_settings()
+	
+	close.emit()

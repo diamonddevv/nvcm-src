@@ -5,6 +5,9 @@ const UPGRADE_OPTIONS_PATH: String = "res://asset/data/upgrade_options.json"
 var save_data: SaveData
 var game_manager: GameManager
 
+var set_seed: String = ""
+var has_set_seed: bool = false
+
 var action_costs: Dictionary = {
 	"shoot": 10,
 	"move": 2

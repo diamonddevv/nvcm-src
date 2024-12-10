@@ -61,7 +61,8 @@ func on_die(killer: Unit):
 		"waves_cleared": GlobalManager.game_manager.waves_cleared,
 		"time_alive": time_alive,
 		"money": money,
-		"spent": spent
+		"spent": spent,
+		"seed": GlobalManager.game_manager.rng.seed if not GlobalManager.has_set_seed else GlobalManager.set_seed
 	}
 	
 func on_kill(killed: Enemy):

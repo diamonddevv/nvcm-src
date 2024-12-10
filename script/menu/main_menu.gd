@@ -50,7 +50,9 @@ func _process(delta: float):
 	instruction.rotation_degrees = 2 * -sin(age)
 	instruction.position = Vector2(-cos(age), -sin(age))
 	
-	if Input.is_action_just_pressed("space_action"):
+	if Input.is_action_just_pressed("space_action") and not (
+		how_to_play_shown or settings_shown or customise_shown
+		):
 		_play()
 		
 	var tutorial_press: bool = Input.is_key_pressed(KEY_H)
@@ -99,6 +101,6 @@ func _on_customise_button_pressed():
 	var tween: Tween = customise_panel.create_tween()
 	
 	if not customise_shown:
-		tween.tween_property(customise_panel, "global_position", Vector2(-customise_panel.size.x, 0), 0.2).set_ease(Tween.EASE_OUT)
+		tween.tween_property(customise_panel, "global_position", Vector2(customise_panel.size.x, 0), 0.2).set_ease(Tween.EASE_OUT)
 	else:
 		tween.tween_property(customise_panel, "global_position", Vector2(0, 0), 0.2).set_ease(Tween.EASE_OUT)
