@@ -9,11 +9,6 @@ var has_set_seed: bool = false
 var set_seed: String = ""
 var customisation: Dictionary = {}
 
-var action_costs: Dictionary = {
-	"shoot": 10,
-	"move": 2
-}
-
 var end_of_game_data := {}
 
 @onready var global__music_stream: AudioStreamPlayer = $/root/Global/MusicStream

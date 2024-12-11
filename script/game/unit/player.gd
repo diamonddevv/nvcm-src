@@ -24,14 +24,14 @@ func _process(delta):
 	super._process(delta)
 	
 	if Input.is_action_pressed("shoot") and _can_fire and GlobalManager.game_manager.in_wave:
-		if money - GlobalManager.action_costs["shoot"] >= 0:
+		if money - GlobalManager.game_manager.action_costs["shoot"] >= 0:
 			fire()
 			
 func do_movement(delta: float):
 	var movevec := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	look_at(get_global_mouse_position())
 	
-	if money < GlobalManager.action_costs["move"]:
+	if money < GlobalManager.game_manager.action_costs["move"]:
 		# no move if no money lolsies
 		_moving = false
 		
@@ -48,7 +48,7 @@ func do_movement(delta: float):
 	position += movevec * speed * delta
 
 func after_shoot():
-	spend(GlobalManager.action_costs["shoot"])
+	spend(GlobalManager.game_manager.action_costs["shoot"])
 
 func on_die(killer: Unit):
 	var enemy_name: String = ""
@@ -56,7 +56,7 @@ func on_die(killer: Unit):
 		enemy_name = killer.behaviour.enemy_name
 	
 	GlobalManager.end_of_game_data = {
-		"death_msg": "You ran out of money." if money <= GlobalManager.action_costs["move"] else ("Killed by %s." % enemy_name if enemy_name != "" else "You stopped living, some way or another."),
+		"death_msg": "You ran out of money." if money <= GlobalManager.game_manager.action_costs["move"] else ("Killed by %s." % enemy_name if enemy_name != "" else "You stopped living, some way or another."),
 		"enemies_killed": kills,
 		"waves_cleared": GlobalManager.game_manager.waves_cleared,
 		"time_alive": time_alive,
@@ -87,7 +87,7 @@ func on_hurt(attacker: Unit, dmg: float):
 
 func _on_walk_timer_timeout() -> void:
 	if _moving:
-		spend(GlobalManager.action_costs["move"])
+		spend(GlobalManager.game_manager.action_costs["move"])
 
 
 func _on_combo_end():

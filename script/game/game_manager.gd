@@ -14,6 +14,11 @@ signal wave_start()
 @onready var pause_ol: PauseOverlay = $Pause
 @onready var camera: Camera2D = $Camera2D
 
+var action_costs: Dictionary = {
+	"shoot": 10,
+	"move": 2
+}
+
 var enemy_pool: Array = []
 var boss_pool: Array = []
 
@@ -51,7 +56,10 @@ func _ready():
 		player.max_health = stats["max_health"]
 		player.barrels = stats["bullets_per_shot"]
 		player.fire_delay = stats["fire_delay"]
+		player.speed = stats["speed"]
 		
+		# action costs
+		action_costs = GlobalManager.customisation["action_costs"]
 	else:
 		enemy_pool = Enemy.behaviours.values()
 		boss_pool = Enemy.boss_behaviors.values()

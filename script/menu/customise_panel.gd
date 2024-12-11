@@ -15,6 +15,10 @@ signal start_game()
 @onready var max_health: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_MaxHealth
 @onready var bullets_per_shot: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_BulletsShotPerClick
 @onready var fire_delay: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_FireDelay
+@onready var speed: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_Speed
+
+@onready var actioncost_walk: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Walk/BetterSpinbox
+@onready var actioncost_shoot: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Shoot/BetterSpinbox
 
 
 func _ready():
@@ -58,7 +62,12 @@ func play() -> void:
 			"base_money": base_money.get_val(),
 			"max_health": max_health.get_val(),
 			"bullets_per_shot": bullets_per_shot.get_val(),
-			"fire_delay": fire_delay.get_val()
+			"fire_delay": fire_delay.get_val(),
+			"speed": speed.get_val() * 100
+		},
+		"action_costs": {
+			"move": actioncost_walk.value,
+			"shoot": actioncost_shoot.value
 		}
 	}
 	
@@ -78,7 +87,8 @@ func hackermode():
 	
 func hackermode_preplay():
 	var tween: Tween = $HackermanLabel.create_tween()
-	tween.tween_property($HackermanLabel, "text", "\n\nconfirm execution of\nN0T_V3RY_C45H_M0N3Y.exe? [y/n]:\n\n\n\n\n\n\n\n\n\n\nRUNNING...", 1)
+	tween.tween_property($HackermanLabel, "text", "\n\nconfirm execution of\nN0T_V3RY_C45H_M0N3Y.exe? [y/n]:\n\n\n\n\n[#####################]\nEXECUTING PROTOCOL:\nthat wasn't very cash money of you\n..................................\nSUCCESS CODE: YIPPEE\n\nRUNNING (ETA: 3 SEC).......", 2)
+	tween.tween_interval(3)
 	await tween.finished
 	play()
 
