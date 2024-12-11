@@ -14,6 +14,9 @@ signal wave_start()
 @onready var pause_ol: PauseOverlay = $Pause
 @onready var camera: Camera2D = $Camera2D
 
+var enemy_pool: Array = []
+var boss_pool: Array = []
+
 var current_wave: Array[Enemy] = []
 var next_wave_size: int = 1
 var next_wave_boss: bool = false
@@ -35,8 +38,14 @@ func _ready():
 		GlobalManager.has_set_seed = GlobalManager.customisation.get("has_seed", false)
 		GlobalManager.set_seed = GlobalManager.customisation.get("seed", "")
 		
+		increase_every_x_waves = GlobalManager.customisation.get("wave_size_inc_freq", increase_every_x_waves)
 		boss_every_x_waves = GlobalManager.customisation.get("boss_freq", boss_every_x_waves)
-	
+		
+		enemy_pool = GlobalManager.customisation["enemy_pool"] if not GlobalManager.customisation["enemy_pool"].is_empty() else Enemy.behaviours.values()
+		boss_pool = GlobalManager.customisation["boss_pool"]
+	else:
+		enemy_pool = Enemy.behaviours.values()
+		boss_pool = Enemy.boss_behaviors.values()
 	
 	# set up randomness
 	if not GlobalManager.has_set_seed:
@@ -52,7 +61,7 @@ func _ready():
 	wave_cleared.connect(hud.open_shop)
 	wave_start.connect(hud.close_shop)
 	
-	create_wave(next_wave_size, player, 0 % boss_every_x_waves == 0)
+	create_wave(next_wave_size, player, 1 % boss_every_x_waves == 0)
 
 
 func _process(delta):

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2dk2c4jmglf6"]
 
 [ext_resource type="Script" path="res://script/menu/dead_screen.gd" id="1_e5muj"]
-[ext_resource type="Texture2D" uid="uid://bdklg8dbaaqg8" path="res://asset/texture/dead.png" id="2_8xal6"]
+[ext_resource type="Texture2D" uid="uid://bdklg8dbaaqg8" path="res://asset/texture/menu/dead.png" id="2_8xal6"]
 [ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="3_iwkos"]
-[ext_resource type="Texture2D" uid="uid://cjciilpynte11" path="res://asset/texture/instruction.png" id="3_ox6w6"]
+[ext_resource type="Texture2D" uid="uid://cjciilpynte11" path="res://asset/texture/menu/instruction.png" id="3_ox6w6"]
 
 [node name="DeadScreen" type="Control"]
 layout_mode = 3

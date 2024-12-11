@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1gout75gvh0o"]
+[gd_scene load_steps=11 format=3 uid="uid://c1gout75gvh0o"]
 
 [ext_resource type="Script" path="res://script/menu/customise_panel.gd" id="1_xavlk"]
 [ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="2_8owt4"]
-[ext_resource type="Texture2D" uid="uid://bxilj2x2shngp" path="res://asset/texture/icon.png" id="2_drio1"]
+[ext_resource type="Texture2D" uid="uid://bxilj2x2shngp" path="res://asset/texture/menu/icon.png" id="2_drio1"]
 [ext_resource type="FontFile" uid="uid://dga8klli6eiei" path="res://resource/CourierPrime-Regular.ttf" id="3_00u4k"]
+[ext_resource type="Texture2D" uid="uid://c3ofrgftubnbp" path="res://asset/texture/menu/fake_window_header_right.png" id="3_5egwg"]
 [ext_resource type="PackedScene" uid="uid://m3yste5wb1y8" path="res://obj/menu/customisers/better_spinbox.tscn" id="4_1kssg"]
+[ext_resource type="PackedScene" uid="uid://dn0lbt5qjgxkh" path="res://obj/menu/customisers/grid_selection.tscn" id="7_vjh8q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_des3a"]
 bg_color = Color(0, 0, 0, 1)
@@ -56,7 +58,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "N0T_V3RY_C45H_M0N3Y.exe"
 
-[node name="TextureRect" type="TextureRect" parent="WindowTop"]
+[node name="WindowIcon" type="TextureRect" parent="WindowTop"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -68,6 +70,22 @@ offset_bottom = 8.0
 grow_vertical = 2
 texture = ExtResource("2_drio1")
 expand_mode = 2
+
+[node name="WindowButtons" type="TextureRect" parent="WindowTop"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -8.0
+offset_right = -10.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_5egwg")
+expand_mode = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -114,29 +132,37 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/outline_size = 25
 
-[node name="Seed" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Seed"]
-layout_mode = 2
-text = "Enter Seed: "
-label_settings = ExtResource("2_8owt4")
-horizontal_alignment = 1
-
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Seed"]
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeededRun"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_00u4k")
 placeholder_text = "Enter Seed"
-expand_to_text_length = true
+clear_button_enabled = true
+
+[node name="WaveSizeIncreaseFrequency" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/WaveSizeIncreaseFrequency"]
+layout_mode = 2
+text = "Wave size increases..:"
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="BetterSpinbox" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/WaveSizeIncreaseFrequency" instance=ExtResource("4_1kssg")]
+layout_mode = 2
+value = 3
+prefix = "Every"
+suffix = "Waves"
+min = 1
+max = 100
 
 [node name="BossFrequency" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/BossFrequency"]
 layout_mode = 2
-text = "Boss Frequency: "
+text = "Boss appears..:"
 label_settings = ExtResource("2_8owt4")
 horizontal_alignment = 1
 
@@ -144,8 +170,37 @@ horizontal_alignment = 1
 layout_mode = 2
 value = 15
 prefix = "Every"
-suffix = "Rounds"
+suffix = "Waves"
 min = 1
+max = 100
+
+[node name="AllowedEnemyTypes" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes"]
+layout_mode = 2
+text = "Enemy Types:"
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="GridSelection" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes" instance=ExtResource("7_vjh8q")]
+layout_mode = 2
+columns = 3
+default = true
+
+[node name="AllowedBossTypes" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedBossTypes"]
+layout_mode = 2
+text = "Boss Types: "
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="GridSelection" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedBossTypes" instance=ExtResource("7_vjh8q")]
+layout_mode = 2
+columns = 3
+default = true
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2

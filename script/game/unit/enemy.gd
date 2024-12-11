@@ -24,16 +24,16 @@ var shots_left: int = 0
 var reloading: bool = false
 
 static var behaviours := {
-	"normal": 		ResourceLoader.load("res://resource/ais/normal.tres"),
-	"aggressive": 	ResourceLoader.load("res://resource/ais/aggressive.tres"),
-	"powerhouse": 	ResourceLoader.load("res://resource/ais/powerhouse.tres"),
-	"skittish": 	ResourceLoader.load("res://resource/ais/skittish.tres"),
-	"spray_pray":	ResourceLoader.load("res://resource/ais/spray_and_pray.tres")
+	"Normal": 		ResourceLoader.load("res://resource/ais/normal.tres"),
+	"Aggressive": 	ResourceLoader.load("res://resource/ais/aggressive.tres"),
+	"Powerhouse": 	ResourceLoader.load("res://resource/ais/powerhouse.tres"),
+	"Skittish": 	ResourceLoader.load("res://resource/ais/skittish.tres"),
+	"Spray n' Pray":	ResourceLoader.load("res://resource/ais/spray_and_pray.tres")
 }
 
 static var boss_behaviors := {
-	"king_grayscale": ResourceLoader.load("res://resource/ais/king_grayscale.tres"),
-	"big_boom": ResourceLoader.load("res://resource/ais/big_boom.tres")
+	"King Grayscale": ResourceLoader.load("res://resource/ais/king_grayscale.tres"),
+	"Big Boom": ResourceLoader.load("res://resource/ais/big_boom.tres")
 }
 
 func _ready():
@@ -56,7 +56,7 @@ func on_die(killer: Unit):
 	queue_free()
 
 func assign_random_behaviour(boss: bool = false):
-	behaviour = (behaviours if not boss else boss_behaviors).values().pick_random().duplicate()
+	behaviour = (GlobalManager.game_manager.enemy_pool if (not boss or GlobalManager.game_manager.boss_pool.is_empty()) else GlobalManager.game_manager.boss_pool).pick_random().duplicate()
 	assign_behaviour(behaviour)
 		
 func assign_behaviour(behaviour: AiPattern):
