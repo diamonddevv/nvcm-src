@@ -5,8 +5,9 @@ const UPGRADE_OPTIONS_PATH: String = "res://asset/data/upgrade_options.json"
 var save_data: SaveData
 var game_manager: GameManager
 
-var set_seed: String = ""
 var has_set_seed: bool = false
+var set_seed: String = ""
+var customisation: Dictionary = {}
 
 var action_costs: Dictionary = {
 	"shoot": 10,
@@ -34,5 +35,6 @@ func _ready():
 func apply_settings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(save_data.master_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(save_data.music_volume))
+	$/root/Global/CRTShaderPass.visible = save_data.crt_shader
 	
 	save_data.save()

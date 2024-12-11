@@ -83,6 +83,18 @@ horizontal_alignment = 1
 [node name="CheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/MenuParticles"]
 layout_mode = 2
 
+[node name="CRTShader" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CRTShader"]
+layout_mode = 2
+text = "Screen CRT Shader: "
+label_settings = ExtResource("2_id1mk")
+horizontal_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer/CRTShader"]
+layout_mode = 2
+
 [node name="Sep2" type="Control" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 

@@ -31,6 +31,13 @@ var boss_health: float = 0.0
 
 func _ready():
 	
+	if GlobalManager.customisation:
+		GlobalManager.has_set_seed = GlobalManager.customisation.get("has_seed", false)
+		GlobalManager.set_seed = GlobalManager.customisation.get("seed", "")
+		
+		boss_every_x_waves = GlobalManager.customisation.get("boss_freq", boss_every_x_waves)
+	
+	
 	# set up randomness
 	if not GlobalManager.has_set_seed:
 		GlobalManager.set_seed = str(hash(Time.get_unix_time_from_system()))
@@ -45,7 +52,7 @@ func _ready():
 	wave_cleared.connect(hud.open_shop)
 	wave_start.connect(hud.close_shop)
 	
-	create_wave(next_wave_size, player, false)
+	create_wave(next_wave_size, player, 0 % boss_every_x_waves == 0)
 
 
 func _process(delta):

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://m3yste5wb1y8"]
+
+[ext_resource type="FontFile" uid="uid://dga8klli6eiei" path="res://resource/CourierPrime-Regular.ttf" id="1_aglo0"]
+[ext_resource type="Script" path="res://script/menu/customisers/better_spinbox.gd" id="1_b3fxl"]
+[ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="2_rm7t8"]
+
+[node name="BetterSpinbox" type="HBoxContainer"]
+script = ExtResource("1_b3fxl")
+
+[node name="Down" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_aglo0")
+text = "<"
+flat = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = " [0] "
+label_settings = ExtResource("2_rm7t8")
+horizontal_alignment = 1
+
+[node name="Up" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_aglo0")
+text = ">"
+flat = true
+
+[connection signal="pressed" from="Down" to="." method="_change" binds= [false]]
+[connection signal="pressed" from="Up" to="." method="_change" binds= [true]]

@@ -28,8 +28,8 @@ func _ready():
 	v%s
 	""" % ProjectSettings.get_setting("application/config/version")
 	
-	settings_panel.position = Vector2(0, -settings_panel.size.y)
-	customise_panel.position = Vector2(customise_panel.size.x, 0)
+	settings_panel.position = Vector2(0, -800)
+	customise_panel.position = Vector2(850, 25)
 	
 	settings_panel.show()
 	customise_panel.show()
@@ -94,7 +94,7 @@ func _on_settings_button_pressed():
 	var tween: Tween = settings_panel.create_tween()
 	
 	if not settings_shown:
-		tween.tween_property(settings_panel, "global_position", Vector2(0, -settings_panel.size.y), 0.2).set_ease(Tween.EASE_OUT)
+		tween.tween_property(settings_panel, "global_position", Vector2(0, -800), 0.2).set_ease(Tween.EASE_OUT)
 	else:
 		tween.tween_property(settings_panel, "global_position", Vector2(0, 0), 0.2).set_ease(Tween.EASE_OUT)
 
@@ -107,6 +107,10 @@ func _on_customise_button_pressed():
 	var tween: Tween = customise_panel.create_tween()
 	
 	if not customise_shown:
-		tween.tween_property(customise_panel, "global_position", Vector2(customise_panel.size.x, 0), 0.2).set_ease(Tween.EASE_OUT)
+		tween.tween_property(customise_panel, "global_position", Vector2(850, 25), 0.2).set_ease(Tween.EASE_OUT)
 	else:
-		tween.tween_property(customise_panel, "global_position", Vector2(0, 0), 0.2).set_ease(Tween.EASE_OUT)
+		tween.tween_property(customise_panel, "global_position", Vector2(50, 25), 0.2).set_ease(Tween.EASE_OUT)
+
+
+func _on_customise_panel_start_game() -> void:
+	_play()

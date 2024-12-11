@@ -1,17 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1gout75gvh0o"]
+[gd_scene load_steps=9 format=3 uid="uid://c1gout75gvh0o"]
 
 [ext_resource type="Script" path="res://script/menu/customise_panel.gd" id="1_xavlk"]
 [ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="2_8owt4"]
+[ext_resource type="Texture2D" uid="uid://bxilj2x2shngp" path="res://asset/texture/icon.png" id="2_drio1"]
 [ext_resource type="FontFile" uid="uid://dga8klli6eiei" path="res://resource/CourierPrime-Regular.ttf" id="3_00u4k"]
+[ext_resource type="PackedScene" uid="uid://m3yste5wb1y8" path="res://obj/menu/customisers/better_spinbox.tscn" id="4_1kssg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_des3a"]
-bg_color = Color(0, 0.78, 0, 0.862745)
-border_width_left = 25
-border_width_top = 25
-border_width_right = 25
-border_width_bottom = 25
-border_color = Color(0.0588235, 0.705882, 0, 0.588235)
-border_blend = true
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2vycu"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4epi"]
 
@@ -19,22 +24,56 @@ border_blend = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_des3a")
 script = ExtResource("1_xavlk")
 
+[node name="WindowTop" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2vycu")
+
+[node name="Label" type="Label" parent="WindowTop"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 28.0
+offset_top = -11.5
+offset_right = 246.0
+offset_bottom = 11.5
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "N0T_V3RY_C45H_M0N3Y.exe"
+
+[node name="TextureRect" type="TextureRect" parent="WindowTop"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 8.0
+grow_vertical = 2
+texture = ExtResource("2_drio1")
+expand_mode = 2
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -14.0
-offset_top = -28.0
-offset_right = 14.0
-offset_bottom = 28.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -54,42 +93,80 @@ layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
 
-[node name="SeededRun" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/SeededRun"]
+[node name="SeededRun" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeededRun"]
 layout_mode = 2
 text = "Seeded Run?: "
 label_settings = ExtResource("2_8owt4")
 horizontal_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/SeededRun"]
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeededRun"]
 layout_mode = 2
 theme_override_constants/outline_size = 25
 
-[node name="Seed" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Seed" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Seed"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Seed"]
 layout_mode = 2
 text = "Enter Seed: "
 label_settings = ExtResource("2_8owt4")
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/Seed"]
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Seed"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_00u4k")
 placeholder_text = "Enter Seed"
 expand_to_text_length = true
 
-[node name="CustomiseButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="BossFrequency" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/BossFrequency"]
+layout_mode = 2
+text = "Boss Frequency: "
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="BetterSpinbox" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/BossFrequency" instance=ExtResource("4_1kssg")]
+layout_mode = 2
+value = 15
+prefix = "Every"
+suffix = "Rounds"
+min = 1
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_00u4k")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
+text = "Play Custom Game"
+flat = true
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
+
+[node name="Close" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_00u4k")
+theme_override_font_sizes/font_size = 24
 text = "Close"
 flat = true
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/CustomiseButton" to="." method="_on_customise_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Close" to="." method="_on_customise_button_pressed"]

@@ -254,9 +254,10 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 800.0
-offset_right = 1600.0
-offset_bottom = 800.0
+offset_left = 850.0
+offset_top = 25.0
+offset_right = 1550.0
+offset_bottom = 775.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -264,3 +265,4 @@ grow_vertical = 1
 [connection signal="pressed" from="CustomiseButton" to="." method="_on_customise_button_pressed"]
 [connection signal="close" from="SettingsPanel" to="." method="_on_settings_button_pressed"]
 [connection signal="close" from="CustomisePanel" to="." method="_on_customise_button_pressed"]
+[connection signal="start_game" from="CustomisePanel" to="." method="_on_customise_panel_start_game"]
