@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1gout75gvh0o"]
+[gd_scene load_steps=15 format=3 uid="uid://c1gout75gvh0o"]
 
 [ext_resource type="Script" path="res://script/menu/customise_panel.gd" id="1_xavlk"]
 [ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="2_8owt4"]
@@ -6,7 +6,8 @@
 [ext_resource type="FontFile" uid="uid://dga8klli6eiei" path="res://resource/CourierPrime-Regular.ttf" id="3_00u4k"]
 [ext_resource type="Texture2D" uid="uid://c3ofrgftubnbp" path="res://asset/texture/menu/fake_window_header_right.png" id="3_5egwg"]
 [ext_resource type="PackedScene" uid="uid://m3yste5wb1y8" path="res://obj/menu/customisers/better_spinbox.tscn" id="4_1kssg"]
-[ext_resource type="PackedScene" uid="uid://dn0lbt5qjgxkh" path="res://obj/menu/customisers/grid_selection.tscn" id="7_vjh8q"]
+[ext_resource type="Script" path="res://script/menu/customisers/grid_selection.gd" id="7_oqadk"]
+[ext_resource type="PackedScene" uid="uid://c40nnv4bam03g" path="res://obj/menu/customisers/stat_slider.tscn" id="8_l12am"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_des3a"]
 bg_color = Color(0, 0, 0, 1)
@@ -21,6 +22,12 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c4epi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oul3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ruk2q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3awu1"]
 
 [node name="CustomisePanel" type="Panel"]
 anchors_preset = 15
@@ -88,6 +95,7 @@ texture = ExtResource("3_5egwg")
 expand_mode = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,12 +120,24 @@ theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(650, 320)
 layout_mode = 2
+scroll_vertical = 100
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+
+[node name="TopSep" type="HSeparator" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
+
+[node name="SeedLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Set Seed:"
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
 
 [node name="SeededRun" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -139,6 +159,17 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_00u4k")
 placeholder_text = "Enter Seed"
 clear_button_enabled = true
+
+[node name="SeedSep" type="HSeparator" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
+
+[node name="FrequenciesLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Frequencies:"
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
 
 [node name="WaveSizeIncreaseFrequency" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -174,33 +205,100 @@ suffix = "Waves"
 min = 1
 max = 100
 
-[node name="AllowedEnemyTypes" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="FrequencySep" type="HSeparator" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes"]
+[node name="EnemyTypesLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Enemy Types:"
 label_settings = ExtResource("2_8owt4")
 horizontal_alignment = 1
 
-[node name="GridSelection" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes" instance=ExtResource("7_vjh8q")]
+[node name="AllowedEnemyTypes" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes"]
+layout_mode = 2
+text = "Normal Enemies: "
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="GridSelection" type="GridContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedEnemyTypes"]
 layout_mode = 2
 columns = 3
+script = ExtResource("7_oqadk")
 default = true
+font = ExtResource("3_00u4k")
 
 [node name="AllowedBossTypes" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedBossTypes"]
 layout_mode = 2
-text = "Boss Types: "
+text = "        Bosses: "
 label_settings = ExtResource("2_8owt4")
 horizontal_alignment = 1
 
-[node name="GridSelection" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedBossTypes" instance=ExtResource("7_vjh8q")]
+[node name="GridSelection" type="GridContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/AllowedBossTypes"]
 layout_mode = 2
 columns = 3
+script = ExtResource("7_oqadk")
 default = true
+font = ExtResource("3_00u4k")
+
+[node name="EnemyTypesSep" type="HSeparator" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
+
+[node name="BaseStatsLabel" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Base Stats:"
+label_settings = ExtResource("2_8owt4")
+horizontal_alignment = 1
+
+[node name="Stat_BaseMoney" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_l12am")]
+layout_mode = 2
+text = "Cash at Start: "
+min = 100.0
+max = 5000.0
+step = 1.0
+start_value = 1000.0
+express_as_percentage = false
+
+[node name="Stat_MaxHealth" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_l12am")]
+layout_mode = 2
+text = "Max Health: "
+min = 10.0
+max = 500.0
+step = 1.0
+start_value = 100.0
+express_as_percentage = false
+
+[node name="Stat_BulletsShotPerClick" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_l12am")]
+layout_mode = 2
+text = "Bullets Shot: "
+min = 1.0
+max = 10.0
+step = 1.0
+start_value = 1.0
+express_as_percentage = false
+
+[node name="Stat_FireDelay" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("8_l12am")]
+layout_mode = 2
+text = "Seconds Per Shot: "
+min = 0.1
+max = 10.0
+step = 0.1
+start_value = 0.5
+express_as_percentage = false
+
+[node name="BaseStatsSep" type="HSeparator" parent="CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
 
 [node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -210,7 +308,7 @@ theme_override_font_sizes/font_size = 24
 text = "Play Custom Game"
 flat = true
 
-[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+[node name="ButtonSeperator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxEmpty_c4epi")
@@ -223,5 +321,42 @@ theme_override_font_sizes/font_size = 24
 text = "Close"
 flat = true
 
+[node name="HackermanLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 59.0
+offset_right = -20.0
+offset_bottom = -82.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+
+confirm execution of
+N0T_V3RY_C45H_M0N3Y.exe? [y/n]:
+"
+label_settings = ExtResource("2_8owt4")
+
+[node name="LineEdit" type="LineEdit" parent="HackermanLabel"]
+layout_mode = 1
+offset_top = 177.0
+offset_right = 67.0625
+offset_bottom = 213.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_00u4k")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oul3s")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_ruk2q")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3awu1")
+max_length = 1
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+flat = true
+caret_blink = true
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Close" to="." method="_on_customise_button_pressed"]
+[connection signal="text_changed" from="HackermanLabel/LineEdit" to="." method="_on_hack_enter_change"]

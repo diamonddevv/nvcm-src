@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c40nnv4bam03g"]
+
+[ext_resource type="LabelSettings" uid="uid://bvmmjlelxrcnq" path="res://resource/hackertext.tres" id="1_sf8hl"]
+[ext_resource type="Script" path="res://script/menu/customisers/stat_slider.gd" id="1_tlj3k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qf3hj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qd2i"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="StatSlider" type="HBoxContainer"]
+script = ExtResource("1_tlj3k")
+express_as_percentage = null
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+label_settings = ExtResource("1_sf8hl")
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_qf3hj")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_1qd2i")
+max_value = 0.0
+step = 0.0
+
+[node name="Value" type="Label" parent="."]
+layout_mode = 2
+text = "(0)"
+label_settings = ExtResource("1_sf8hl")
+horizontal_alignment = 1

@@ -34,6 +34,7 @@ var boss_health: float = 0.0
 
 func _ready():
 	
+	## APPLY CUSTOMISATION
 	if GlobalManager.customisation:
 		GlobalManager.has_set_seed = GlobalManager.customisation.get("has_seed", false)
 		GlobalManager.set_seed = GlobalManager.customisation.get("seed", "")
@@ -43,9 +44,22 @@ func _ready():
 		
 		enemy_pool = GlobalManager.customisation["enemy_pool"] if not GlobalManager.customisation["enemy_pool"].is_empty() else Enemy.behaviours.values()
 		boss_pool = GlobalManager.customisation["boss_pool"]
+		
+		# player stats
+		var stats: Dictionary = GlobalManager.customisation["stats"]
+		player.money = stats["base_money"]
+		player.max_health = stats["max_health"]
+		player.barrels = stats["bullets_per_shot"]
+		player.fire_delay = stats["fire_delay"]
+		
 	else:
 		enemy_pool = Enemy.behaviours.values()
 		boss_pool = Enemy.boss_behaviors.values()
+	
+	player.health = player.max_health
+	
+	# reset customisation
+	GlobalManager.customisation = {}
 	
 	# set up randomness
 	if not GlobalManager.has_set_seed:
