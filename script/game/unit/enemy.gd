@@ -46,6 +46,7 @@ func _ready():
 	
 	random_aggresiveness_modifier = randf()
 	spawn_effect()
+	invincibility_time = 0.0
 	
 	shots_left = behaviour.shots
 	timer_ai.start(behaviour.aggression * random_aggresiveness_modifier * 2)

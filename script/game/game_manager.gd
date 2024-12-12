@@ -57,6 +57,7 @@ func _ready():
 		player.barrels = stats["bullets_per_shot"]
 		player.fire_delay = stats["fire_delay"]
 		player.speed = stats["speed"]
+		player.prj_damage = stats["damage"]
 		
 		# action costs
 		action_costs = GlobalManager.customisation["action_costs"]
@@ -97,7 +98,7 @@ func _process(delta):
 		on_wave_cleared(waves_cleared - 1)
 		
 	camera.position = 3 * Vector2(randf() - 0.5, randf() - 0.5) * screenshake_trauma
-	screenshake_trauma = move_toward(screenshake_trauma, 0, delta * 3)
+	screenshake_trauma = move_toward(screenshake_trauma, 0, delta * 5)
 
 func _on_player_die():
 	get_tree().change_scene_to_packed.call_deferred(dead_screen)
@@ -171,5 +172,6 @@ func spawn_enemy(boss: bool = false) -> Enemy:
 	
 
 func add_screenshake(trauma: float):
-	screenshake_trauma += trauma
-	trauma = min(trauma, 5)
+	if GlobalManager.save_data.screenshake:
+		screenshake_trauma += trauma
+		trauma = min(trauma, 5)

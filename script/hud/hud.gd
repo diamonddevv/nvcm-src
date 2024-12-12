@@ -53,8 +53,8 @@ func _process(delta):
 		combo_bar.value = player.timer_combo.time_left
 		combo_bar.max_value = player.timer_combo.wait_time
 		
-		if last_money > player.money:
-			for i in (last_money - player.money):
+		if last_money > player.money and GlobalManager.save_data.game_money_particles:
+			for i in min(last_money - player.money, 1000):
 				var p: CPUParticles2D = money_particle.instantiate()
 				p.finished.connect(func(): p.queue_free())
 				p.global_position = Vector2(390, 750)

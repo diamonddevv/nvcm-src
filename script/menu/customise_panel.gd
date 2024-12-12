@@ -16,6 +16,7 @@ signal start_game()
 @onready var bullets_per_shot: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_BulletsShotPerClick
 @onready var fire_delay: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_FireDelay
 @onready var speed: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_Speed
+@onready var damage: StatSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Stat_Damage
 
 @onready var actioncost_walk: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Walk/BetterSpinbox
 @onready var actioncost_shoot: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Shoot/BetterSpinbox
@@ -63,7 +64,8 @@ func play() -> void:
 			"max_health": max_health.get_val(),
 			"bullets_per_shot": bullets_per_shot.get_val(),
 			"fire_delay": fire_delay.get_val(),
-			"speed": speed.get_val() * 100
+			"speed": speed.get_val() * 100,
+			"damage": damage.get_val()
 		},
 		"action_costs": {
 			"move": actioncost_walk.value,

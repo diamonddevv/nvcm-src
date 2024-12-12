@@ -18,7 +18,7 @@ static var die_particle: PackedScene = ResourceLoader.load("res://obj/particles/
 @export var speed: float = 1000
 @export var fire_delay: float = 0.5
 @export var max_health: float = 100
-@export var invincibility_time: float = 0.1
+@export var invincibility_time: float = 0.2
 @export var prj_damage: float = 10
 @export var spread: float = 25
 @export var barrels: int = 1
@@ -109,7 +109,8 @@ func damage(attacker: Unit, damage: float):
 				get_tree().current_scene.add_child(dpart)
 				dpart.emitting = true
 		else:
-			timer_invincible.start(invincibility_time)
+			if invincibility_time > 0.0:
+				timer_invincible.start(invincibility_time)
 			flash_sprite(4)
 			
 			sfx_hurt.pitch_scale = randf_range(0.8, 1.2)
