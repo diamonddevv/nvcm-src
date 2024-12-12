@@ -29,6 +29,7 @@ static var die_particle: PackedScene = ResourceLoader.load("res://obj/particles/
 @export var base_damage_reduction: float = 0.0
 
 var health: int = 0
+var is_dead: bool = false
 
 var time_alive: float = 0
 
@@ -89,16 +90,20 @@ func fire():
 	after_shoot()
 
 func damage(attacker: Unit, damage: float):
+	if is_dead:
+		return
+		
 	if _can_hurt:
 		health -= damage
 		
 		_can_heal = false
 		timer_to_heal.start(dmgless_time_to_regen)
 		
-		_can_hurt = false
+		_can_hurt = invincibility_time == 0.0
 		on_hurt(attacker if is_instance_valid(attacker) else null, damage)
 
 		if health <= 0:
+			is_dead = true
 			on_die(attacker if is_instance_valid(attacker) else null)
 			dead.emit()
 			

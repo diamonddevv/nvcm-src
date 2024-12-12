@@ -14,7 +14,6 @@ corner_radius_bottom_left = 4
 
 [node name="StatSlider" type="HBoxContainer"]
 script = ExtResource("1_tlj3k")
-express_as_percentage = null
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

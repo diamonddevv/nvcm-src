@@ -3,6 +3,7 @@ class_name Hud
 
 static var money_particle: PackedScene = ResourceLoader.load("res://obj/particles/hud_money_particle.tscn")
 
+@onready var low_health_warning_label: Label = $LowHealthWarning
 @onready var money_label: MoneyLabel = $Panel/MarginContainer/VBoxContainer/MoneyLabel
 @onready var health_bar: ProgressBar = $Panel/MarginContainer/VBoxContainer/HealthBar
 @onready var boss_health_bar: ProgressBar = $BossHealthBar
@@ -105,8 +106,13 @@ func open_shop():
 			data["func"].call(value)
 		button.set_values(data["text"], data["value"], min(8500, data["cost"] * pow(1.15, items_bought)), function)
 	
+	if player.health / player.max_health <= 0.35:
+		low_health_warning_label.text = "You are at %.1f%% health." % ((player.health / player.max_health) * 100)
+		low_health_warning_label.show()
 
 func close_shop():
+	low_health_warning_label.hide()
+	
 	var tween: Tween = shop_panel.create_tween()
 	tween.tween_property(shop_panel, "position", Vector2(0, -shop_panel.size.y), shop_open_close_length).set_ease(Tween.EASE_OUT)
 

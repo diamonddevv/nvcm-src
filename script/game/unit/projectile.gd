@@ -21,7 +21,7 @@ func _ready():
 
 func _process(delta: float):
 	position += direction.normalized() * speed * delta
-	rotation_degrees += 5 * delta
+	#rotation_degrees += 50 * delta
 
 func _hit_something(body: Node2D):
 	if body != creator:

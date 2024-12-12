@@ -93,11 +93,11 @@ func _process(delta):
 		in_wave = false
 		if waves_cleared % increase_every_x_waves == 0:
 			next_wave_size += 1
-		wave_cleared.emit()
 		next_wave_boss = can_do_boss and (waves_cleared + 1) % boss_every_x_waves == 0
 		on_wave_cleared(waves_cleared - 1)
 		
 	camera.position = 3 * Vector2(randf() - 0.5, randf() - 0.5) * screenshake_trauma
+	screenshake_trauma = min(screenshake_trauma, 8)
 	screenshake_trauma = move_toward(screenshake_trauma, 0, delta * 5)
 
 func _on_player_die():
@@ -155,6 +155,8 @@ func on_wave_cleared(wave: int):
 	label.scale = Vector2.ONE * 4
 	label.create_tween().tween_property(label, "text", "Pick an option", 1)
 	opt_nodes.append(label)
+	
+	wave_cleared.emit()
 	
 func spawn_enemy(boss: bool = false) -> Enemy:
 	var unit: Enemy = enemy.instantiate()

@@ -12,4 +12,5 @@ func _process(delta: float) -> void:
 	$Label.text = "%s [%s] %s" % [prefix, value, suffix]
 
 func _change(up: bool) -> void:
-	value = clamp(value + (1 if up else -1), min, max)
+	var mod: int = 5 if Input.is_key_pressed(KEY_CTRL) else 1
+	value = clamp(value + (1 if up else -1) * mod, min, max)

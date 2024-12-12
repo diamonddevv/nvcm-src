@@ -89,8 +89,8 @@ func hackermode():
 	
 func hackermode_preplay():
 	var tween: Tween = $HackermanLabel.create_tween()
-	tween.tween_property($HackermanLabel, "text", "\n\nconfirm execution of\nN0T_V3RY_C45H_M0N3Y.exe? [y/n]:\n\n\n\n\n[#####################]\nEXECUTING PROTOCOL:\nthat wasn't very cash money of you\n..................................\nSUCCESS CODE: YIPPEE\n\nRUNNING (ETA: 3 SEC).......", 2)
-	tween.tween_interval(3)
+	tween.tween_property($HackermanLabel, "text", "\n\nconfirm execution of\nN0T_V3RY_C45H_M0N3Y.exe? [y/n]:\n\n\n\n\n[#####################]\nEXECUTING PROTOCOL:\nthat wasn't very cash money of you\n..................................\nSUCCESS CODE: YIPPEE\n\nRUNNING (ETA: 1 SEC).......", 2)
+	tween.tween_interval(0.5)
 	await tween.finished
 	play()
 
