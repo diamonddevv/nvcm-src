@@ -9,6 +9,7 @@ class_name AiPattern
 @export var fire_rate: float = 0.5
 @export var damage: float = 10
 @export var shots: int = 10
+@export var bullets_per_shot: int = 1
 @export var spread: float = 25
 @export var reload_time: float = 1
 @export var explo_power: float = 0.0

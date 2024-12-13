@@ -45,7 +45,7 @@ func _process(delta):
 		timer.text = format_time(player.time_alive)
 		
 		if not GlobalManager.game_manager.in_wave:
-			timer.text += "\nNext Wave Size: %s" % ("???" if GlobalManager.game_manager.next_wave_boss else GlobalManager.game_manager.next_wave_size)
+			timer.text += "\nNext Wave Size: %s" % ("???" if GlobalManager.game_manager.next_wave_boss else GlobalManager.game_manager.actual_next_wave_size)
 		
 		kills.text = "%s Kills" % player.kills if player.kills != 1 else "1 Kill"
 		kills.text += " | Wave %s" % str(GlobalManager.game_manager.waves_cleared + 1)

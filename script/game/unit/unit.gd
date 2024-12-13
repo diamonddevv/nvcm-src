@@ -26,7 +26,7 @@ static var die_particle: PackedScene = ResourceLoader.load("res://obj/particles/
 @export var dmgless_time_to_regen: float = 16
 @export var explosion_freq: float = 0.0
 @export var explosion_power: float = 0.5
-@export var base_damage_reduction: float = 0.0
+@export var base_damage_reduction: float = 0.05
 
 var health: int = 0
 var is_dead: bool = false
@@ -94,6 +94,7 @@ func damage(attacker: Unit, damage: float):
 		return
 		
 	if _can_hurt:
+		damage -= base_damage_reduction * (randf() if randf() >= 0.5 else 0)
 		health -= damage
 		
 		_can_heal = false

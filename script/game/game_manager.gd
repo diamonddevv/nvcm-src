@@ -24,6 +24,7 @@ var boss_pool: Array = []
 
 var current_wave: Array[Enemy] = []
 var next_wave_size: int = 1
+var actual_next_wave_size: int = 1
 var next_wave_boss: bool = false
 var in_wave: bool = false
 var waves_cleared: int = 0
@@ -84,16 +85,11 @@ func _ready():
 	wave_cleared.connect(hud.open_shop)
 	wave_start.connect(hud.close_shop)
 	
-	create_wave(next_wave_size, player, 1 % boss_every_x_waves == 0)
+	create_wave(actual_next_wave_size, player, 1 % boss_every_x_waves == 0)
 
 
 func _process(delta):
 	if len(current_wave) <= 0 and in_wave:
-		waves_cleared += 1
-		in_wave = false
-		if waves_cleared % increase_every_x_waves == 0:
-			next_wave_size += 1
-		next_wave_boss = can_do_boss and (waves_cleared + 1) % boss_every_x_waves == 0
 		on_wave_cleared(waves_cleared - 1)
 		
 	camera.position = 3 * Vector2(randf() - 0.5, randf() - 0.5) * screenshake_trauma
@@ -118,6 +114,14 @@ func create_wave(size: int, player: Player, boss: bool = false):
 	in_wave = true
 		
 func on_wave_cleared(wave: int):
+	
+	waves_cleared += 1
+	in_wave = false
+	if waves_cleared % increase_every_x_waves == 0:
+		next_wave_size += 1
+	actual_next_wave_size = next_wave_size + randi_range(-2, 2)
+	next_wave_boss = can_do_boss and (waves_cleared + 1) % boss_every_x_waves == 0
+	
 	if boss_active:
 		boss_active = false
 	
@@ -166,6 +170,8 @@ func spawn_enemy(boss: bool = false) -> Enemy:
 	unit.global_position = spawn_pos
 	unit.target = player
 	unit.assign_random_behaviour(boss)
+	
+	unit.health *= pow(1.1, waves_cleared + 1)
 	
 	get_tree().current_scene.add_child.call_deferred(unit)
 	current_wave.append(unit)

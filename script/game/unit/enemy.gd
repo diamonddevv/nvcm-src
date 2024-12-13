@@ -32,8 +32,9 @@ static var behaviours := {
 }
 
 static var boss_behaviors := {
-	"King Grayscale": ResourceLoader.load("res://resource/ais/king_grayscale.tres"),
-	"Big Boom": ResourceLoader.load("res://resource/ais/big_boom.tres")
+	"King Grayscale": ResourceLoader.load("res://resource/ais/boss/king_grayscale.tres"),
+	"Big Boom": ResourceLoader.load("res://resource/ais/boss/big_boom.tres"),
+	#"Buella Tihell": ResourceLoader.load("res://resource/ais/boss/bullet_hell.tres"),
 }
 
 func _ready():
@@ -66,6 +67,7 @@ func assign_behaviour(behaviour: AiPattern):
 	max_health = behaviour.max_health
 	speed = behaviour.speed
 	fire_delay = behaviour.fire_rate
+	barrels = behaviour.bullets_per_shot
 	prj_damage = behaviour.damage / 2 * pow(1.12, GlobalManager.game_manager.waves_cleared)
 	spread = behaviour.spread
 	explosion_power = behaviour.explo_power
