@@ -24,17 +24,16 @@ var shots_left: int = 0
 var reloading: bool = false
 
 static var behaviours := {
-	"Normal": 		ResourceLoader.load("res://resource/ais/normal.tres"),
-	"Aggressive": 	ResourceLoader.load("res://resource/ais/aggressive.tres"),
-	"Powerhouse": 	ResourceLoader.load("res://resource/ais/powerhouse.tres"),
-	"Skittish": 	ResourceLoader.load("res://resource/ais/skittish.tres"),
-	"Spray n' Pray":	ResourceLoader.load("res://resource/ais/spray_and_pray.tres")
+	"Normal": ResourceLoader.load("res://resource/ais/normal.tres"),
+	"Aggressive": ResourceLoader.load("res://resource/ais/aggressive.tres"),
+	"Powerhouse": ResourceLoader.load("res://resource/ais/powerhouse.tres"),
+	"Skittish": ResourceLoader.load("res://resource/ais/skittish.tres"),
+	"Spray n' Pray": ResourceLoader.load("res://resource/ais/spray_and_pray.tres")
 }
 
 static var boss_behaviors := {
 	"King Grayscale": ResourceLoader.load("res://resource/ais/boss/king_grayscale.tres"),
-	"Big Boom": ResourceLoader.load("res://resource/ais/boss/big_boom.tres"),
-	#"Buella Tihell": ResourceLoader.load("res://resource/ais/boss/bullet_hell.tres"),
+	"Big Boom": ResourceLoader.load("res://resource/ais/boss/big_boom.tres")
 }
 
 func _ready():

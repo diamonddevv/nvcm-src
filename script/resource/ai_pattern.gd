@@ -29,10 +29,9 @@ func should_summon_minions(health: float, waves_cleared: int) -> int:
 	if (health / max_health) > 0.5 / aggression * 1.2:
 		return 0
 	
-	var chance: float = aggression / waves_cleared / 48
+	var chance: float = aggression / waves_cleared / 28
 	chance = 1
 	if randf() > chance:
 		return 0
 	
-	print("spawning..")
 	return min(5, roundi(1 / (health / max_health) * aggression / 2))

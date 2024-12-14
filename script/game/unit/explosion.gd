@@ -36,4 +36,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		return
 	
 	if body is Unit:
-		body.damage(body, 20 * power)
+		body.damage(body, 75 * power)

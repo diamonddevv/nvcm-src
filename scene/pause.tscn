@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqkr0b60xub7y"]
+[gd_scene load_steps=7 format=3 uid="uid://dqkr0b60xub7y"]
 
 [ext_resource type="Script" path="res://script/hud/pause.gd" id="1_2adfp"]
 [ext_resource type="Shader" path="res://asset/shader/desaturate.gdshader" id="2_4gtpe"]
 [ext_resource type="LabelSettings" uid="uid://6y6x0ama3x0y" path="res://resource/labels.tres" id="2_w4nan"]
 [ext_resource type="FontFile" uid="uid://deydtolohaa13" path="res://resource/Pixellari.ttf" id="4_egegp"]
+[ext_resource type="PackedScene" uid="uid://b1v258teomkwc" path="res://obj/menu/settings_panel.tscn" id="5_8unbq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gtvt5"]
 shader = ExtResource("2_4gtpe")
@@ -33,17 +34,6 @@ text = "Paused"
 label_settings = ExtResource("2_w4nan")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Label"]
-layout_mode = 1
-offset_left = 1.0
-offset_top = 28.0
-offset_right = 403.0
-offset_bottom = 60.0
-scale = Vector2(0.25, 0.25)
-text = "Press Escape to resume"
-label_settings = ExtResource("2_w4nan")
-horizontal_alignment = 1
-
 [node name="GridContainer" type="GridContainer" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,7 +48,31 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 3
+columns = 2
+
+[node name="Resume" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_egegp")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="ReportBugs" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_egegp")
+theme_override_font_sizes/font_size = 32
+text = "Report Bugs"
+
+[node name="Settings" type="Button" parent="GridContainer"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_egegp")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
 
 [node name="GiveUp" type="Button" parent="GridContainer"]
 custom_minimum_size = Vector2(150, 80)
@@ -68,4 +82,11 @@ theme_override_fonts/font = ExtResource("4_egegp")
 theme_override_font_sizes/font_size = 32
 text = "Give Up"
 
+[node name="SettingsPanel" parent="." instance=ExtResource("5_8unbq")]
+offset_top = -1600.0
+offset_bottom = -800.0
+
+[connection signal="pressed" from="GridContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="GridContainer/ReportBugs" to="." method="_on_report_bugs_pressed"]
+[connection signal="pressed" from="GridContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="GridContainer/GiveUp" to="." method="_on_give_up_pressed"]

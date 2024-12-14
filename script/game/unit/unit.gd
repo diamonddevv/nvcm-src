@@ -48,6 +48,8 @@ func _ready():
 	timer_regen.timeout.connect(func(): 
 		if _can_heal and GlobalManager.game_manager and GlobalManager.game_manager.in_wave:
 			health += regeneration
+			if self is Player:
+				(self as Player).spend(GlobalManager.game_manager.action_costs["regen"])
 			)
 
 func _physics_process(delta: float):
@@ -75,7 +77,7 @@ func fire():
 		
 		if randf() < explosion_freq:
 			prj.explode = true
-			prj.explosion_power = explosion_power * randf()
+			prj.explosion_power = explosion_power * randf_range(0.4, 1.2) * (prj_damage / 10)
 		
 		prepare_projectile(prj)
 		
@@ -100,7 +102,7 @@ func damage(attacker: Unit, damage: float):
 		_can_heal = false
 		timer_to_heal.start(dmgless_time_to_regen)
 		
-		_can_hurt = invincibility_time == 0.0
+		_can_hurt = invincibility_time == 0.0 # if there is invincibility time, give it
 		on_hurt(attacker if is_instance_valid(attacker) else null, damage)
 
 		if health <= 0:

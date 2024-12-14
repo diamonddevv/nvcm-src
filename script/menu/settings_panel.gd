@@ -3,12 +3,12 @@ class_name SettingsPanel
 
 signal close()
 
-@onready var master_volume_slider: HSlider = $CenterContainer/VBoxContainer/MasterVolume/Slider
-@onready var music_volume_slider: HSlider = $CenterContainer/VBoxContainer/MusicVolume/Slider
-@onready var menu_particles: CheckButton = $CenterContainer/VBoxContainer/MenuParticles/CheckButton
-@onready var game_money_particles: CheckButton = $CenterContainer/VBoxContainer/GameMoneyParticles/CheckButton
-@onready var crt_shader: CheckButton = $CenterContainer/VBoxContainer/CRTShader/CheckButton
-@onready var screenshake: CheckButton = $CenterContainer/VBoxContainer/Screenshake/CheckButton
+@onready var master_volume_slider: HSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/MasterVolume/Slider
+@onready var music_volume_slider: HSlider = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/MusicVolume/Slider
+@onready var menu_particles: CheckButton = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/MenuParticles/CheckButton
+@onready var game_money_particles: CheckButton = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/GameMoneyParticles/CheckButton
+@onready var crt_shader: CheckButton = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/CRTShader/CheckButton
+@onready var screenshake: CheckButton = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Screenshake/CheckButton
 
 func _ready():
 	master_volume_slider.value = GlobalManager.save_data.master_volume * master_volume_slider.max_value

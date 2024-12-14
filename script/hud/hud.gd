@@ -42,6 +42,8 @@ func _process(delta):
 	shop_panel_text.position = Vector2(364, 14) + Vector2(cos(age), sin(age))
 	
 	if player:
+		low_health_warning_label.text = "You are at %.1f%% health." % ((player.health / player.max_health) * 100)
+		
 		timer.text = format_time(player.time_alive)
 		
 		if not GlobalManager.game_manager.in_wave:
@@ -107,7 +109,6 @@ func open_shop():
 		button.set_values(data["text"], data["value"], min(8500, data["cost"] * pow(1.15, items_bought)), function)
 	
 	if player.health / player.max_health <= 0.35:
-		low_health_warning_label.text = "You are at %.1f%% health." % ((player.health / player.max_health) * 100)
 		low_health_warning_label.show()
 
 func close_shop():

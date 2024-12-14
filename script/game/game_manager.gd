@@ -16,7 +16,8 @@ signal wave_start()
 
 var action_costs: Dictionary = {
 	"shoot": 10,
-	"move": 2
+	"move": 2,
+	"regen": 0
 }
 
 var enemy_pool: Array = []
@@ -111,6 +112,8 @@ func create_wave(size: int, player: Player, boss: bool = false):
 	
 	wave_start.emit()
 	player.timer_to_heal.start(player.dmgless_time_to_regen)
+	player._can_hurt = false
+	player.timer_invincible.start(1) # give 1 second of invincibilty at the start of a wave
 	in_wave = true
 		
 func on_wave_cleared(wave: int):

@@ -20,6 +20,7 @@ signal start_game()
 
 @onready var actioncost_walk: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Walk/BetterSpinbox
 @onready var actioncost_shoot: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Shoot/BetterSpinbox
+@onready var actioncost_regen: BetterSpinbox = $CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer/Regen/BetterSpinbox
 
 
 func _ready():
@@ -69,7 +70,8 @@ func play() -> void:
 		},
 		"action_costs": {
 			"move": actioncost_walk.value,
-			"shoot": actioncost_shoot.value
+			"shoot": actioncost_shoot.value,
+			"regen": actioncost_regen.value
 		}
 	}
 	
